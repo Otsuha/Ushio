@@ -14,6 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var iCloudURL: URL?
+        DispatchQueue.global().async {
+            while iCloudURL == nil {
+                if let url = FileManager.default.url(forUbiquityContainerIdentifier: nil) {
+                    iCloudURL = url
+                }
+            }
+        }
+        
         return true
     }
 
